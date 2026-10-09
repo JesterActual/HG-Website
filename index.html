@@ -52,20 +52,37 @@ nav a { text-decoration: none; font-size: .9rem; }
 nav a:hover { color: #ff777a; }
 .hero {
   text-align: center;
-  padding: 55px 20px 70px;
-  background:
-    linear-gradient(135deg, #333d40, #171b1e 75%);
-}
+  padding: 65px 20px 80px;
 
+  background-image:
+    linear-gradient(
+      rgba(12, 18, 21, 0.18),
+      rgba(12, 18, 21, 0.48)
+    ),
+    url("hostile-ground-hero.png");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #202629;
+
+  border-bottom: 3px solid #c73539;
+}
 .hero .eyebrow {
   display: block;
   margin-bottom: 18px;
-}
-
 .hero p {
   margin: 10px auto;
   max-width: 650px;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
+.hero .eyebrow {
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
 .eyebrow {
   color: #ff777a;
   text-transform: uppercase;
