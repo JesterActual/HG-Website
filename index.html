@@ -2,65 +2,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-  <title>Hostile Ground | Tactical Airsoft Events</title>
-  <style>
-    body {
-      margin: 0;
-      background: #121719;
-      color: #f0f0f0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    header {
-      background: #20292c;
-      padding: 40px 20px;
-      border-bottom: 3px solid #bf3030;
-    }
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 4px;
-    }
-    .content {
-      max-width: 900px;
-      margin: auto;
-      padding: 50px 20px;
-    }
-    .event {
-      background: #222b2d;
-      padding: 30px;
-      border: 1px solid #465052;
-      border-radius: 8px;
-    }
-    a {
-      color: #ff6565;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171b1e">
+<meta name="description" content="Hostile Ground tactical airsoft events. Explore upcoming operations, factions, player resources, and registration.">
+<title>Hostile Ground | Tactical Airsoft Events</title>
+
+<style>
+:root {
+  --background: #171b1e;
+  --panel: #252b2e;
+  --text: #f5f5f5;
+  --muted: #c2c9cc;
+  --accent: #c73539;
+  --line: #4a5357;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; }
+header {
+  background: #202528;
+  border-bottom: 3px solid var(--accent);
+  padding: 18px 6%;
+}
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+nav { display: flex; gap: 22px; flex-wrap: wrap; }
+nav a { text-decoration: none; font-size: .9rem; }
+nav a:hover { color: #ff777a; }
+.hero {
+  text-align: center;
+  padding: 85px 20px;
+  background:
+    linear-gradient(135deg, #333d40, #171b1e 75%);
+}
+.eyebrow {
+  color: #ff777a;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: .8rem;
+}
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 5px;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+.hero p { color: var(--muted); }
+.logo {
+  display: block;
+  max-width: 280px;
+  width: 65%;
+  margin: 0 auto 25px;
+  border-radius: 10px;
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 65px 24px;
+}
+.section-title {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+.event-card, .faction-card, .resource-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 30px;
+}
+.event-card {
+  border-left: 5px solid var(--accent);
+}
+.event-card h3 {
+  font-size: 2rem;
+  margin: 8px 0;
+}
+.event-date {
+  color: #ffffff;
+  font-weight: bold;
+}
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+.button {
+  display: inline-block;
+  padding: 12px 22px;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.button.secondary {
+  background: transparent;
+  border-color: #9ba5aa;
+}
+.button:hover { filter: brightness(1.18); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.faction-card h3 { margin-top: 0; }
+.faction-card p, .resource-card p {
+  color: var(--muted);
+}
+.faction-card { border-top: 4px solid var(--accent); }
+.resource-card a { color: #ff8a8d; }
+footer {
+  text-align: center;
+  background: #101416;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  padding: 30px;
+}
+@media(max-width: 760px) {
+  .nav { justify-content: center; }
+  nav { justify-content: center; }
+  .grid { grid-template-columns: 1fr; }
+  .hero { padding: 55px 15px; }
+}
+</style>
 </head>
+
 <body>
-  <header>
+
+<header>
+  <div class="nav">
+    <a href="#" class="brand">HOSTILE GROUND</a>
+    <nav aria-label="Main navigation">
+      <a href="#operations">Operations</a>
+      <a href="#factions">Factions</a>
+      <a href="#resources">Player Intel</a>
+      <a href="#community">Community</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <!-- Official logo will be added after uploading to GitHub -->
+    <span class="eyebrow">Tactical Airsoft Event Series</span>
     <h1>HOSTILE GROUND</h1>
-    <p>TACTICAL AIRSOFT EVENTS</p>
-  </header>
+    <p>Every operation has a consequence.</p>
+    <p>Welcome to the next chapter.</p>
+    <a class="button" href="#operations">
+      View Current Operation
+    </a>
+  </section>
 
-  <main class="content">
-    <section class="event">
-      <h2>CHAPTER II: LOCKBOX</h2>
-      <h3>January 16–17, 2027</h3>
-      <p>T1 Airsoft — Oklahoma City, Oklahoma</p>
+  <section id="operations" class="container">
+    <h2 class="section-title">Current Operation</h2>
+    <article class="event-card">
+      <span class="eyebrow">Chapter II</span>
+      <h3>LOCKBOX</h3>
+      <p class="event-date">January 16–17, 2027</p>
       <p>
-        Prepare for the next chapter
-        of Hostile Ground.
+        T1 Airsoft<br>
+        8000 N I-35 Service Rd<br>
+        Oklahoma City, OK 73131
       </p>
-      <p>Mission details and registration coming soon.</p>
-    </section>
-  </main>
+      <p>
+        A new operation is approaching.
+        Three factions. Competing objectives.
+        The next chapter of Hostile Ground.
+      </p>
+      <div class="button-row">
+        <a class="button secondary" href="#resources">
+          Player Information
+        </a>
+        <!-- Ticket link will be added here -->
+      </div>
+    </article>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 Hostile Ground</p>
-  </footer>
+  <section id="factions" class="container">
+    <h2 class="section-title">The Factions</h2>
+    <div class="grid">
+      <article class="faction-card">
+        <h3>ARES SECURITY COMPACT</h3>
+        <p class="eyebrow">ASC</p>
+        <p>
+          A private security and recovery organization
+          operating with precision and discipline.
+        </p>
+        <p>Secure the asset. Control the outcome.</p>
+      </article>
+
+      <article class="faction-card">
+        <h3>PROVISIONAL CONTROL FORCE</h3>
+        <p class="eyebrow">PCF</p>
+        <p>
+          A regional military authority determined
+          to maintain control of the operational area.
+        </p>
+      </article>
+
+      <article class="faction-card">
+        <h3>THE MANDATE</h3>
+        <p class="eyebrow">Independent Authority</p>
+        <p>
+          An armed authority controlling access,
+          checkpoints, and information across
+          the operational zone.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="resources" class="container">
+    <h2 class="section-title">Player Intel</h2>
+    <div class="grid">
+      <article class="resource-card">
+        <h3>Event Information</h3>
+        <p>Operation details, schedules, and updates.</p>
+      </article>
+      <article class="resource-card">
+        <h3>Rules & Requirements</h3>
+        <p>Safety rules, equipment, and uniform guidance.</p>
+      </article>
+      <article class="resource-card">
+        <h3>Registration</h3>
+        <p>Tickets will be available through our event partner.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="community" class="container">
+    <h2 class="section-title">Join the Community</h2>
+    <p>
+      Connect with other players, follow event updates,
+      and prepare for upcoming Hostile Ground operations.
+    </p>
+    <p>
+      Discord invitation link coming soon.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 Hostile Ground. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
-
