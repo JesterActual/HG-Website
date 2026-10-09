@@ -52,9 +52,19 @@ nav a { text-decoration: none; font-size: .9rem; }
 nav a:hover { color: #ff777a; }
 .hero {
   text-align: center;
-  padding: 85px 20px;
+  padding: 55px 20px 70px;
   background:
     linear-gradient(135deg, #333d40, #171b1e 75%);
+}
+
+.hero .eyebrow {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  margin: 10px auto;
+  max-width: 650px;
 }
 .eyebrow {
   color: #ff777a;
@@ -72,10 +82,11 @@ nav a:hover { color: #ff777a; }
 .hero p { color: var(--muted); }
 .logo {
   display: block;
-  max-width: 280px;
-  width: 65%;
-  margin: 0 auto 25px;
-  border-radius: 10px;
+  width: 90%;
+  max-width: 450px;
+  height: auto;
+  margin: 0 auto 30px;
+  border-radius: 0;
 }
 .container {
   max-width: 1200px;
@@ -175,7 +186,6 @@ footer {
   class="logo"
 >
     <span class="eyebrow">Tactical Airsoft Event Series</span>
-    <h1>HOSTILE GROUND</h1>
     <p>Every operation has a consequence.</p>
     <p>Welcome to the next chapter.</p>
     <a class="button" href="#operations">
