@@ -164,7 +164,26 @@ nav a:hover { color: #ff777a; }
 .faction-card p, .resource-card p {
   color: var(--muted);
 }
-.faction-card { border-top: 4px solid var(--accent); }
+.faction-card {
+  border-top: 4px solid var(--faction-accent, var(--accent));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.faction-card.asc { --faction-accent: #738c39; }
+.faction-card.pcf { --faction-accent: #c1a06a; }
+.faction-card.mandate { --faction-accent: #c73539; }
+.faction-logo {
+  display: block;
+  width: 160px;
+  max-width: 78%;
+  height: 170px;
+  object-fit: contain;
+  align-self: center;
+  margin: 0 auto 24px;
+}
+.faction-card .eyebrow { color: var(--faction-accent); }
+.faction-card h3 { margin-top: 0; line-height: 1.35; }
 .resource-card a { color: #ff8a8d; }
 footer {
   text-align: center;
@@ -240,7 +259,8 @@ footer {
   <section id="factions" class="container">
     <h2 class="section-title">The Factions</h2>
     <div class="grid">
-      <article class="faction-card">
+      <article class="faction-card asc">
+        <img src="asc-logo.png" alt="ASC wolf shield insignia" class="faction-logo" loading="lazy">
         <h3>ARES SECURITY COMPACT</h3>
         <p class="eyebrow">ASC</p>
         <p>
@@ -250,7 +270,8 @@ footer {
         <p>Secure the asset. Control the outcome.</p>
       </article>
 
-      <article class="faction-card">
+      <article class="faction-card pcf">
+        <img src="pcf-logo.png" alt="PCF winged sword insignia" class="faction-logo" loading="lazy">
         <h3>PROVISIONAL CONTROL FORCE</h3>
         <p class="eyebrow">PCF</p>
         <p>
@@ -259,8 +280,9 @@ footer {
         </p>
       </article>
 
-      <article class="faction-card">
-        <h3>THE MANDATE</h3>
+      <article class="faction-card mandate">
+        <img src="mandate-logo.png" alt="Mandate sword shield insignia" class="faction-logo" loading="lazy">
+        <h3>MANDATE</h3>
         <p class="eyebrow">Independent Authority</p>
         <p>
           An armed authority controlling access,
