@@ -239,6 +239,38 @@ footer {
 .footer-bottom{max-width:1200px;margin:34px auto 0;padding-top:16px;border-top:1px solid #4a5357;text-align:center;font-size:.85rem}
 @media(max-width:760px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}.site-footer{padding:34px 18px 18px}}
 @media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.footer-bottom{margin-top:26px}}
+
+
+/* Mobile readability and touch-target refinements */
+img{max-width:100%}
+@media(max-width:760px){
+  .desktop-nav{display:none}
+  .mobile-menu summary{min-height:44px;display:flex;align-items:center}
+  .mobile-menu nav a{min-height:44px;display:flex;align-items:center}
+  .footer-column a{min-height:32px;display:inline-flex;align-items:center}
+}
+@media(max-width:480px){
+  .container{padding-left:18px;padding-right:18px}
+  .site-footer{padding-left:18px;padding-right:18px}
+  .brand{font-size:1rem}
+  .footer-brand strong{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:760px){
+.hero{background-position:center center}
+.section-title{font-size:clamp(1.5rem,5vw,2rem)}
+.event-card,.faction-card,.resource-card{padding:22px}
+.button-row{gap:10px}
+}
+@media(max-width:480px){
+.hero{padding:42px 18px 50px}
+.logo{width:75%;max-width:270px}
+.hero-actions{margin-top:18px}
+.button-row a,.hero-actions a{width:100%;text-align:center;overflow-wrap:anywhere}
+.event-card h3{font-size:1.7rem}
+.grid{gap:14px}
+.faction-logo{height:145px}
+}
 </style>
 </head>
 
