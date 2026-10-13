@@ -40,6 +40,35 @@
 .footer-bottom{max-width:1200px;margin:34px auto 0;padding-top:16px;border-top:1px solid #4a5357;text-align:center;font-size:.85rem}
 @media(max-width:760px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}.site-footer{padding:34px 18px 18px}}
 @media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.footer-bottom{margin-top:26px}}
+
+
+/* Mobile readability and touch-target refinements */
+img{max-width:100%}
+@media(max-width:760px){
+  .desktop-nav{display:none}
+  .mobile-menu summary{min-height:44px;display:flex;align-items:center}
+  .mobile-menu nav a{min-height:44px;display:flex;align-items:center}
+  .footer-column a{min-height:32px;display:inline-flex;align-items:center}
+}
+@media(max-width:480px){
+  .container{padding-left:18px;padding-right:18px}
+  .site-footer{padding-left:18px;padding-right:18px}
+  .brand{font-size:1rem}
+  .footer-brand strong{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:760px){
+.rules-index{gap:10px}
+.rules-index a{padding:6px 0;line-height:1.4}
+.rules-detail{scroll-margin-top:14px}
+.rules-detail summary{padding:15px 14px;line-height:1.4}
+.rules-body{padding:0 14px 18px}
+.rules-text{white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;line-height:1.65}
+}
+@media(max-width:480px){
+.rules-detail summary{font-size:1rem}
+.button{max-width:100%;overflow-wrap:anywhere;text-align:center}
+}
 </style>
 </head>
 <body>
