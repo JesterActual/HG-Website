@@ -225,6 +225,20 @@ footer {
  .mobile-menu nav a{display:block;padding:10px 12px;font-size:1rem;border-radius:3px}
  .mobile-menu nav a:hover,.mobile-menu nav a:focus-visible{background:#30383b}
 }
+
+/* Shared four-column footer */
+.site-footer{background:#101416;border-top:2px solid #c73539;color:#c2c9cc;text-align:left;padding:44px 24px 18px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:32px}
+.footer-brand strong{display:block;color:#fff;font-size:1.1rem;letter-spacing:2px}
+.footer-brand p{margin:8px 0;color:#c2c9cc;font-size:.91rem}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.footer-column h2{font-size:.95rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin:0 0 5px}
+.footer-column a{text-decoration:none;color:#c2c9cc;font-size:.91rem;line-height:1.45}
+.footer-column a:hover{color:#ff888b;text-decoration:underline}
+.footer-column a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+.footer-bottom{max-width:1200px;margin:34px auto 0;padding-top:16px;border-top:1px solid #4a5357;text-align:center;font-size:.85rem}
+@media(max-width:760px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}.site-footer{padding:34px 18px 18px}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.footer-bottom{margin-top:26px}}
 </style>
 </head>
 
@@ -367,8 +381,32 @@ footer {
   </section>
 </main>
 
-<footer>
-  <p>&copy; 2026 Hostile Ground. All rights reserved.</p>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>HOSTILE GROUND</strong>
+      <p>Tactical Airsoft Event Series</p>
+      <p>Every operation has a consequence.</p>
+    </div>
+    <nav class="footer-column" aria-label="Footer quick links">
+      <h2>Quick Links</h2>
+      <a href="index.html">Home</a>
+      <a href="event-information.html">Event Information</a>
+      <a href="rules-requirements.html">Rules &amp; Requirements</a>
+      <a href="registration.html">Registration</a>
+    </nav>
+    <div class="footer-column">
+      <h2>Player Resources</h2>
+      <a href="https://ticketbud.com/events/582d1804-be98-11f1-93d9-42010a71701f" target="_blank" rel="noopener noreferrer">LOCKBOX Tickets ↗</a>
+      <a href="https://app.waiverforever.com/pending/2jFsZvVeJe1486185911" target="_blank" rel="noopener noreferrer">T1 Field Waiver ↗</a>
+      <a href="hostile-ground-ruleset.pdf">Official Ruleset PDF</a>
+    </div>
+    <div class="footer-column">
+      <h2>Community</h2>
+      <a href="index.html#community">Community Information</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Hostile Ground. All rights reserved.</div>
 </footer>
 
 </body>

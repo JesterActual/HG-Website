@@ -26,7 +26,21 @@
  .mobile-menu nav a{display:block;padding:10px 12px;font-size:1rem;border-radius:3px}
  .mobile-menu nav a:hover,.mobile-menu nav a:focus-visible{background:#30383b}
 }
-.page-intro{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:24px;margin-bottom:34px;padding:25px;background:linear-gradient(120deg,#252b2e,#1b2023);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px}.page-intro h1{margin:8px 0 12px}.page-intro .intro{margin:0}.page-intro-logo{display:block;width:100%;max-width:130px;height:auto}@media(max-width:600px){.page-intro{grid-template-columns:minmax(0,1fr) 80px;gap:12px;padding:18px}.page-intro h1{font-size:clamp(1.8rem,7vw,2.8rem)}.page-intro-logo{max-width:80px}.panel{padding:20px}}</style>
+.page-intro{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:24px;margin-bottom:34px;padding:25px;background:linear-gradient(120deg,#252b2e,#1b2023);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px}.page-intro h1{margin:8px 0 12px}.page-intro .intro{margin:0}.page-intro-logo{display:block;width:100%;max-width:130px;height:auto}@media(max-width:600px){.page-intro{grid-template-columns:minmax(0,1fr) 80px;gap:12px;padding:18px}.page-intro h1{font-size:clamp(1.8rem,7vw,2.8rem)}.page-intro-logo{max-width:80px}.panel{padding:20px}}
+/* Shared four-column footer */
+.site-footer{background:#101416;border-top:2px solid #c73539;color:#c2c9cc;text-align:left;padding:44px 24px 18px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:32px}
+.footer-brand strong{display:block;color:#fff;font-size:1.1rem;letter-spacing:2px}
+.footer-brand p{margin:8px 0;color:#c2c9cc;font-size:.91rem}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.footer-column h2{font-size:.95rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin:0 0 5px}
+.footer-column a{text-decoration:none;color:#c2c9cc;font-size:.91rem;line-height:1.45}
+.footer-column a:hover{color:#ff888b;text-decoration:underline}
+.footer-column a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+.footer-bottom{max-width:1200px;margin:34px auto 0;padding-top:16px;border-top:1px solid #4a5357;text-align:center;font-size:.85rem}
+@media(max-width:760px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}.site-footer{padding:34px 18px 18px}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.footer-bottom{margin-top:26px}}
+</style>
 </head>
 <body>
 <header>
@@ -54,6 +68,32 @@
   </div>
 </header>
 <main><div class="container"><section class="page-intro"><div><span class="eyebrow">Player Intel / Tickets & Attendance</span><h1>Registration</h1><p class="intro">Registration details for Hostile Ground — Chapter II: LOCKBOX.</p></div><img class="page-intro-logo" src="hostile-ground-logo.png" alt="Hostile Ground emblem"></section><section class="panel"><span class="eyebrow">Upcoming Operation</span><h2>LOCKBOX</h2><p><strong>January 16–17, 2027</strong><br>T1 Airsoft, Oklahoma City, Oklahoma</p><p>LOCKBOX event tickets are handled by Ticketbud. Use the official event listing below for ticket options and registration details.<br><a class="button" href="https://ticketbud.com/events/582d1804-be98-11f1-93d9-42010a71701f" target="_blank" rel="noopener noreferrer">View LOCKBOX Tickets on Ticketbud ↗</a></p><p class="muted">Ticket prices, sales status, capacity, and availability are managed on Ticketbud. Review the event listing for current details.</p></section><section class="panel"><h2>Required Field Waiver</h2><p>Players must have a current waiver on file with the hosting field for LOCKBOX. Complete the field waiver before arrival, then confirm it is on file during check-in.</p><p><a class="button" href="https://app.waiverforever.com/pending/2jFsZvVeJe1486185911" target="_blank" rel="noopener noreferrer">Complete T1 Field Waiver ↗</a></p><p class="muted">The waiver is hosted by an external provider. Completing the waiver does not purchase a ticket or reserve a place at the event. Additional guardian documentation may apply to minors under the official rules.</p></section><section class="panel"><h2>Before You Register</h2><p>Review the <a href="event-information.html">Event Information</a> page and the <a href="rules-requirements.html">Rules &amp; Requirements</a> page, including faction uniform guidance.</p><p class="muted">Tickets are purchased through Ticketbud, not on the Hostile Ground website. Completing the separate T1 Field Waiver does not register you for the event.</p></section><p><a class="button secondary" href="index.html#resources">← Back to Player Intel</a></p></div></main>
-<footer><p>&copy; 2026 Hostile Ground. All rights reserved.</p></footer>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>HOSTILE GROUND</strong>
+      <p>Tactical Airsoft Event Series</p>
+      <p>Every operation has a consequence.</p>
+    </div>
+    <nav class="footer-column" aria-label="Footer quick links">
+      <h2>Quick Links</h2>
+      <a href="index.html">Home</a>
+      <a href="event-information.html">Event Information</a>
+      <a href="rules-requirements.html">Rules &amp; Requirements</a>
+      <a href="registration.html">Registration</a>
+    </nav>
+    <div class="footer-column">
+      <h2>Player Resources</h2>
+      <a href="https://ticketbud.com/events/582d1804-be98-11f1-93d9-42010a71701f" target="_blank" rel="noopener noreferrer">LOCKBOX Tickets ↗</a>
+      <a href="https://app.waiverforever.com/pending/2jFsZvVeJe1486185911" target="_blank" rel="noopener noreferrer">T1 Field Waiver ↗</a>
+      <a href="hostile-ground-ruleset.pdf">Official Ruleset PDF</a>
+    </div>
+    <div class="footer-column">
+      <h2>Community</h2>
+      <a href="index.html#community">Community Information</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Hostile Ground. All rights reserved.</div>
+</footer>
 </body>
 </html>
