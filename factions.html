@@ -75,6 +75,7 @@ h2{line-height:1.25}p{max-width:850px}.intro,.muted{color:var(--muted)}.intro{fo
 }
 @media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.actions a{width:100%;text-align:center}.faction-head img{width:70px;height:82px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.faction-directive{font-weight:800;letter-spacing:1.5px;color:#f5f5f5;text-transform:uppercase;font-size:1.05rem}.intel-quote{border-left:3px solid var(--faction-color,#c73539);padding:9px 15px;margin:22px 0;color:#e4e9e9;background:#1b2023;font-style:italic}.mission-list{padding-left:23px}.mission-list li{margin-bottom:10px}.faction-section h3{letter-spacing:.3px}.faction-section.mandate{background:linear-gradient(135deg,#252b2e,#191c20)}
 </style>
 </head>
 <body>
@@ -103,25 +104,37 @@ h2{line-height:1.25}p{max-width:850px}.intro,.muted{color:var(--muted)}.intro{fo
   </div>
 </header>
 <main class="container">
-<section class="page-intro"><div><span class="eyebrow">Player Intel / Faction Briefing</span><h1>Factions</h1><p class="intro">Three factions operate within Hostile Ground — Chapter II: LOCKBOX. Review their roles, insignia, and faction uniform guidance before preparing your loadout.</p></div><img class="page-intro-logo" src="hostile-ground-logo.png" alt="Hostile Ground emblem"></section>
+<section class="page-intro"><div><span class="eyebrow">Player Intel / Faction Briefing</span><h1>Factions</h1><p class="intro">LOCKBOX / OPERATIONAL INTELLIGENCE // Three forces converge on a restricted zone. Their orders differ. Their objectives conflict. What each chooses to reveal may matter as much as what each seeks to recover.</p></div><img class="page-intro-logo" src="hostile-ground-logo.png" alt="Hostile Ground emblem"></section>
 <section class="faction-section asc" id="asc">
   <div class="faction-head"><img src="asc-logo.png" alt="ASC wolf shield insignia"><div><span class="eyebrow">ASC / Green</span><h2>Ares Security Compact</h2></div></div>
-  <p>A private security and recovery organization operating with precision and discipline.</p><p><strong>Secure the asset. Control the outcome.</strong></p>
-  <h3>Authorized clothing / camouflage</h3>
+  <p class="faction-directive">SECURE THE ASSET. CONTROL THE OUTCOME.</p>
+  <h3>Operational Profile</h3><p>A private security coalition deployed into hostile environments to recover sensitive assets, secure critical components, and control the outcome inside the area of operations. ASC operates with discipline and precision; its personnel are measured by the mission completed, not the ground occupied.</p>
+  <h3>Doctrine // Mission Before Ego</h3><p>Observe. Orient. Decide. Act. Reconnaissance identifies the opening; direct-action patrols exploit it. Asset recovery secures what matters. Component control denies an opponent the opportunity to use it.</p>
+  <p class="intel-quote">“We work quietly. We strike precisely. We leave no loose ends.”</p>
+  <h3>Primary Operational Focus</h3><ul class="mission-list"><li><strong>Recon:</strong> Gather intelligence and understand the ground.</li><li><strong>Direct action:</strong> Engage objectives decisively.</li><li><strong>Asset recovery:</strong> Locate, secure, extract and protect sensitive materiel.</li><li><strong>Component control:</strong> Keep critical components away from rival forces.</li></ul>
+  <h3>Uniform Identification // Approved Patterns</h3>
   <ul class="uniform-list"><li>Woodland</li><li>Desert Night</li><li>Multicam Tropic</li><li>MARPAT Woodland</li><li>Jungle Tiger Stripe</li><li>Ranger Green / OD</li><li>Pencott Greenzone</li><li>Kryptek Mandrake</li><li>A-TACS FG</li></ul>
   <p><strong>Gear:</strong> Any gear color.</p>
 </section>
 <section class="faction-section pcf" id="pcf">
   <div class="faction-head"><img src="pcf-logo.png" alt="PCF winged sword insignia"><div><span class="eyebrow">PCF / Tan</span><h2>Provisional Control Force</h2></div></div>
-  <p>A regional military authority determined to maintain control of the operational area.</p>
-  <h3>Authorized clothing / camouflage</h3>
+  <h3>Operational Profile</h3><p>PCF is the regional military authority asserting control over the operational area. Where rival forces see an opportunity to recover what was lost, PCF sees an unacceptable challenge to its authority.</p>
+  <h3>Doctrine // Hold the Ground</h3><p>Control the routes. Keep the force organized. Deny opponents freedom of movement. In the LOCKBOX scenario, PCF's strength lies in maintaining a visible military presence and contesting control of the zone.</p>
+  <p class="intel-quote">“Ground held is leverage gained.”</p>
+  <h3>Operational Priorities</h3><ul class="mission-list"><li>Maintain control of designated positions and routes.</li><li>Protect personnel and critical areas.</li><li>Challenge competing claims to recovered materiel.</li><li>Preserve command and unit cohesion under pressure.</li></ul>
+  <h3>Uniform Identification // Approved Patterns</h3>
   <ul class="uniform-list"><li>Multicam OCP</li><li>Multicam Arid</li><li>MARPAT/AOR1</li><li>Desert MARPAT</li><li>Chocolate Chip / 3-Color Desert</li><li>6-Color Desert</li><li>Kryptek Highlander</li><li>A-TACS AU</li><li>Pencott Badlands</li><li>Desert Tiger Stripe</li><li>Tan</li></ul>
   <p><strong>Gear:</strong> Any gear color.</p>
 </section>
 <section class="faction-section mandate" id="mandate">
   <div class="faction-head"><img src="mandate-logo.png" alt="Mandate sword shield insignia"><div><span class="eyebrow">Independent Authority</span><h2>Mandate</h2></div></div>
-  <p>An armed authority controlling access, checkpoints, and information across the operational zone.</p>
-  <p class="muted">The published ruleset does not list a separate authorized camouflage table for Mandate. Confirm Mandate participation and uniform instructions with event staff before preparing your loadout.</p>
+  <p class="faction-directive">ORDER. DUTY. PURPOSE.</p>
+  <h3>Operational Profile // Restricted</h3><p>Mandate operates in the spaces between official accounts and battlefield reports. Its presence is felt at checkpoints, along closed roads, inside detention sites and wherever information changes hands. Other forces may hold territory; Mandate seeks to control access, decisions and the truth itself.</p>
+  <h3>Doctrine // The Unseen Hand</h3><p>Mandate is the shadow authority of the operation: disciplined, opaque and deliberately difficult to read. Its people operate under orders that are not always shared, with a chain of purpose that outsiders are not meant to see. A prisoner, a sealed report or a recovered fragment can carry more influence than a fortified position.</p>
+  <p class="intel-quote">“We do not seek power. We uphold what others have forgotten.”</p>
+  <h3>Operational Character</h3><ul class="mission-list"><li><strong>Control:</strong> Regulate movement and access across the zone.</li><li><strong>Intelligence:</strong> Treat reports, documents and information as operational leverage.</li><li><strong>Custody:</strong> Exercise authority over designated checkpoints and prisoners within event rules.</li><li><strong>Discretion:</strong> Leave rival factions uncertain about Mandate's priorities.</li></ul>
+  <p class="intel-quote">“In chaos, we provide direction. In darkness, we provide light.”</p>
+  <p class="muted"><strong>Uniform guidance:</strong> The published ruleset does not list a separate authorized camouflage table for Mandate. Confirm Mandate participation and uniform instructions with event staff before preparing your loadout.</p>
 </section>
 <section class="faction-section" style="--faction-color:#c73539">
 <h2>Before You Deploy</h2>
