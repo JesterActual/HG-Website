@@ -272,6 +272,15 @@ img{max-width:100%}
 .faction-logo{height:145px}
 }
 .lockbox-banner{display:block;width:100%;max-width:1050px;height:auto;margin:0 0 24px;border-radius:6px}@media(max-width:480px){.lockbox-banner{margin-bottom:18px}}
+
+/* Latest approved intelligence bulletin preview */
+.latest-intel{margin-top:26px;padding:19px 22px;background:#1b2023;border:1px solid #4a5357;border-left:4px solid var(--accent);border-radius:6px}
+.latest-intel .eyebrow{display:block;color:#ff999b}
+.latest-intel h4{margin:6px 0 8px;font-size:1.2rem;letter-spacing:.6px}
+.latest-intel p{margin:0 0 12px;color:var(--muted)}
+.latest-intel a{color:#ff999b;font-weight:bold;text-underline-offset:3px}
+.latest-intel a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+@media(max-width:480px){.latest-intel{padding:15px 17px}}
 </style>
 </head>
 
@@ -335,6 +344,13 @@ img{max-width:100%}
         Three factions. Competing objectives.
         The next chapter of Hostile Ground.
       </p>
+      <aside class="latest-intel" aria-labelledby="latest-intel-heading">
+        <span class="eyebrow">Latest Intelligence // INTEL-001</span>
+        <h4 id="latest-intel-heading">PERIMETER COMPROMISED</h4>
+        <p>The location of LOCKBOX is no longer secure.</p>
+        <p>ASC controls the device. PCF knows where it is. Mandate controls the approaches.</p>
+        <a href="lockbox-briefing.html#intel-001">Read INTEL-001 →</a>
+      </aside>
       <div class="button-row">
         <a class="button secondary" href="lockbox-briefing.html">Operation Briefing</a>
         <a class="button secondary" href="#resources">
