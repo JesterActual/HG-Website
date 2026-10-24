@@ -82,6 +82,21 @@ img{max-width:100%}
 .brief-actions{display:flex;flex-wrap:wrap;gap:12px;margin:25px 0 0}
 .brief-actions a{margin-top:0}
 @media(max-width:760px){.brief-factions{grid-template-columns:1fr}.dossier{padding:19px}.brief-actions .button{max-width:100%;overflow-wrap:anywhere}}
+
+/* LOCKBOX intelligence bulletin archive */
+.intel-feed{border-left-color:#c73539}
+.intel-status{font-size:.88rem;letter-spacing:.5px;color:#c2c9cc;margin-bottom:17px}
+.intel-report{border:1px solid #4a5357;background:#252b2e;border-radius:6px;margin:14px 0}
+.intel-report summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 18px;font-weight:700;list-style:none}
+.intel-report summary::-webkit-details-marker{display:none}
+.intel-report summary::after{content:"+";color:#ff999b;font-size:1.5rem;font-weight:400;line-height:1;flex-shrink:0}
+.intel-report[open] summary::after{content:"−"}
+.intel-report summary:hover{background:#30383b}
+.intel-report summary:focus-visible{outline:2px solid #ff999b;outline-offset:3px}
+.intel-report-body{border-top:1px solid #4a5357;padding:16px 18px}
+.intel-report-body p{margin:0 0 10px}
+.intel-report-body p:last-child{margin-bottom:0}
+@media(max-width:480px){.intel-report summary{padding:15px 13px}.intel-report-body{padding:14px 13px}}
 </style>
 </head>
 <body>
@@ -134,6 +149,20 @@ img{max-width:100%}
 <p><strong>Faction patches:</strong> Available separately, or as an add-on with a ticket purchase for an additional fee. Quantities are limited.</p>
 <p>Review the official ticket listing for current purchasing options and availability.</p>
 <div class="brief-actions"><a class="button" href="https://ticketbud.com/events/582d1804-be98-11f1-93d9-42010a71701f" target="_blank" rel="noopener noreferrer">Get LOCKBOX Tickets ↗</a><a class="button secondary" href="registration.html">Registration Information</a><a class="button secondary" href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Join Discord ↗</a></div>
+</section>
+<section class="dossier intel-feed" id="intelligence-updates" aria-labelledby="intel-feed-title">
+<span class="classification">Chapter II // Communications Archive</span>
+<h2 id="intel-feed-title">Intelligence Updates</h2>
+<p>Field intelligence and approved scenario announcements will appear here as they are released. New reports will be numbered sequentially (INTEL-001, INTEL-002, and onward) and retained below for reference.</p>
+<p class="intel-status"><strong>Bulletin status:</strong> No intelligence bulletins released.</p>
+<details class="intel-report" open>
+<summary>Awaiting Further Intelligence</summary>
+<div class="intel-report-body">
+<p>No new operational intelligence has been cleared for public release.</p>
+<p>Monitor this briefing and the official Hostile Ground Discord for future updates. Mission-specific instructions will be delivered through official event briefings.</p>
+</div>
+</details>
+<div class="brief-actions"><a class="button secondary" href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Hostile Ground Discord ↗</a></div>
 </section>
 </div></main>
 <footer class="site-footer">
