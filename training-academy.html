@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171b1e">
+<meta name="description" content="Explore the planned Hostile Ground Training Academy: multi-level airsoft training, course updates, and future class enrollment through Discord.">
+<title>Training Academy | Hostile Ground</title>
+<style>:root{--bg:#171b1e;--panel:#252b2e;--line:#4a5357;--text:#f5f5f5;--muted:#c2c9cc;--accent:#c73539}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Arial,Helvetica,sans-serif}a{color:inherit}header{background:#202528;border-bottom:3px solid var(--accent);padding:18px 6%}.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}.brand{font-weight:900;letter-spacing:2px;text-decoration:none;font-size:1.3rem}nav{display:flex;gap:20px;flex-wrap:wrap}nav a{text-decoration:none;font-size:.9rem}nav a:hover,.active{color:#ff888b}.container{max-width:1100px;margin:auto;padding:60px 24px}.eyebrow{color:#ff777a;letter-spacing:3px;font-size:.8rem;font-weight:bold;text-transform:uppercase}h1{font-size:clamp(2.3rem,5vw,4rem);line-height:1.2;margin:10px 0 18px}h2{margin-top:0}p{max-width:850px}.intro{color:var(--muted);font-size:1.08rem}.panel{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:28px;margin:22px 0}.panel p:last-child{margin-bottom:0}.button{display:inline-block;background:var(--accent);text-decoration:none;border-radius:4px;padding:11px 20px;font-weight:bold;margin-top:12px}.secondary{background:transparent;border:1px solid #9ba5aa}.muted{color:var(--muted)}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}footer{text-align:center;border-top:1px solid var(--line);background:#101416;padding:25px;color:var(--muted)}@media(max-width:760px){.info-grid{grid-template-columns:1fr}.container{padding:38px 18px}.nav{justify-content:center}nav{justify-content:center}}
+/* Consistent, accessible site navigation */
+.desktop-nav{display:flex;align-items:center;gap:17px;flex-wrap:wrap}
+.desktop-nav a,.mobile-menu nav a{padding:6px 2px}
+.desktop-nav a[aria-current="page"],.mobile-menu nav a[aria-current="page"]{color:#ff999b;font-weight:700}
+.desktop-nav a:focus-visible,.mobile-menu summary:focus-visible,.mobile-menu nav a:focus-visible,.brand:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+.mobile-menu{display:none}
+@media(max-width:760px){
+ .nav{justify-content:space-between;flex-wrap:nowrap;align-items:center}
+ .brand{font-size:1.04rem;letter-spacing:1.2px}
+ .desktop-nav{display:none}
+ .mobile-menu{display:block;position:relative;flex-shrink:0}
+ .mobile-menu summary{list-style:none;cursor:pointer;background:#30383b;border:1px solid #778286;border-radius:4px;padding:8px 13px;font-weight:700}
+ .mobile-menu summary::-webkit-details-marker{display:none}
+ .mobile-menu summary::after{content:" ☰";margin-left:7px}
+ .mobile-menu[open] summary::after{content:" ✕"}
+ .mobile-menu nav{position:absolute;right:0;top:calc(100% + 8px);min-width:215px;background:#202528;border:1px solid #667075;border-top:3px solid #c73539;border-radius:4px;box-shadow:0 12px 26px rgba(0,0,0,.5);z-index:10;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:7px}
+ .mobile-menu nav a{display:block;padding:10px 12px;font-size:1rem;border-radius:3px}
+ .mobile-menu nav a:hover,.mobile-menu nav a:focus-visible{background:#30383b}
+}
+.page-intro{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:24px;margin-bottom:34px;padding:25px;background:linear-gradient(120deg,#252b2e,#1b2023);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px}.page-intro h1{margin:8px 0 12px}.page-intro .intro{margin:0}.page-intro-logo{display:block;width:100%;max-width:130px;height:auto}@media(max-width:600px){.page-intro{grid-template-columns:minmax(0,1fr) 80px;gap:12px;padding:18px}.page-intro h1{font-size:clamp(1.8rem,7vw,2.8rem)}.page-intro-logo{max-width:80px}.panel{padding:20px}}
+/* Shared four-column footer */
+.site-footer{background:#101416;border-top:2px solid #c73539;color:#c2c9cc;text-align:left;padding:44px 24px 18px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:32px}
+.footer-brand strong{display:block;color:#fff;font-size:1.1rem;letter-spacing:2px}
+.footer-brand p{margin:8px 0;color:#c2c9cc;font-size:.91rem}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.footer-column h2{font-size:.95rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin:0 0 5px}
+.footer-column a{text-decoration:none;color:#c2c9cc;font-size:.91rem;line-height:1.45}
+.footer-column a:hover{color:#ff888b;text-decoration:underline}
+.footer-column a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+.footer-bottom{max-width:1200px;margin:34px auto 0;padding-top:16px;border-top:1px solid #4a5357;text-align:center;font-size:.85rem}
+@media(max-width:760px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}.site-footer{padding:34px 18px 18px}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr;gap:24px}.footer-bottom{margin-top:26px}}
+
+
+/* Mobile readability and touch-target refinements */
+img{max-width:100%}
+@media(max-width:760px){
+  .desktop-nav{display:none}
+  .mobile-menu summary{min-height:44px;display:flex;align-items:center}
+  .mobile-menu nav a{min-height:44px;display:flex;align-items:center}
+  .footer-column a{min-height:32px;display:inline-flex;align-items:center}
+}
+@media(max-width:480px){
+  .container{padding-left:18px;padding-right:18px}
+  .site-footer{padding-left:18px;padding-right:18px}
+  .brand{font-size:1rem}
+  .footer-brand strong{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:760px){
+.panel .button{max-width:100%;text-align:center;overflow-wrap:anywhere}
+}
+@media(max-width:480px){
+.panel .button{display:block;width:100%;padding:13px 14px}
+}
+
+/* Training Academy: prospective learning paths and session registration guidance */
+.academy-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:22px 0 30px}
+.academy-level{background:#252b2e;border:1px solid #4a5357;border-top:4px solid var(--tier-color,#c73539);border-radius:7px;padding:24px;display:flex;flex-direction:column}
+.academy-level:nth-child(1){--tier-color:#829955}
+.academy-level:nth-child(2){--tier-color:#c1a06a}
+.academy-level:nth-child(3){--tier-color:#c73539}
+.academy-level h3{margin:8px 0 12px;line-height:1.25;font-size:1.35rem}
+.academy-level p{margin:0 0 12px}
+.academy-level .tag{color:#d4dadc;font-weight:700;letter-spacing:1.5px;font-size:.75rem;text-transform:uppercase}
+.academy-level .status{margin-top:auto;border-top:1px solid #4a5357;padding-top:14px;color:#c2c9cc;font-size:.91rem}
+.academy-intro{max-width:900px}
+.academy-steps{padding-left:24px}
+.academy-steps li{margin:12px 0}
+.academy-note{padding:14px 17px;border-left:4px solid #c1a06a;background:#1c2124;border-radius:4px}
+.academy-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.academy-actions .button{margin:0}
+.academy-empty{border:1px dashed #677176;border-radius:6px;padding:20px;background:#1b2023;color:#c2c9cc}
+main a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
+@media(max-width:800px){.academy-levels{grid-template-columns:1fr}}
+@media(max-width:480px){.academy-level{padding:19px}.academy-actions .button{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">HOSTILE GROUND</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="event-information.html">Event Info</a>
+      <a href="rules-requirements.html">Rules</a>
+      <a href="registration.html">Registration</a>
+      <a href="factions.html">Factions</a>
+      <a href="training-academy.html" aria-current="page">Academy</a>
+      <a href="index.html#community">Community</a>
+    </nav>
+    <details class="mobile-menu">
+      <summary aria-label="Toggle navigation menu">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+      <a href="event-information.html">Event Info</a>
+      <a href="rules-requirements.html">Rules</a>
+      <a href="registration.html">Registration</a>
+      <a href="factions.html">Factions</a>
+      <a href="training-academy.html" aria-current="page">Academy</a>
+      <a href="index.html#community">Community</a>
+      </nav>
+    </details>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <section class="page-intro">
+      <div>
+        <span class="eyebrow">Hostile Ground / Player Development</span>
+        <h1>Training Academy</h1>
+        <p class="intro academy-intro">A planned multi-level airsoft training program built around safe play, practical teamwork, and organized scenario participation.</p>
+      </div>
+      <img class="page-intro-logo" src="hostile-ground-logo.png" alt="Hostile Ground emblem">
+    </section>
+
+    <section class="panel" aria-labelledby="academy-overview">
+      <span class="eyebrow">Program Overview</span>
+      <h2 id="academy-overview">Training That Builds on Experience</h2>
+      <p>The Hostile Ground Training Academy is being developed as a progression of training levels for players with different backgrounds and experience. The levels below are a <strong>proposed framework</strong>, not a finalized course syllabus.</p>
+      <p class="muted">Course topics, requirements, instructors, locations, session lengths, costs (if any), and completion standards will be announced when approved.</p>
+    </section>
+
+    <section aria-labelledby="academy-levels-heading">
+      <h2 id="academy-levels-heading">Proposed Training Levels</h2>
+      <div class="academy-levels">
+        <article class="academy-level" id="level-1">
+          <span class="tag">Level I / Foundation</span>
+          <h3>Airsoft Fundamentals</h3>
+          <p>Suggested focus: safe participation, equipment readiness, field communication, and an introduction to organized play.</p>
+          <p class="status">Course details and dates: to be announced.</p>
+        </article>
+        <article class="academy-level" id="level-2">
+          <span class="tag">Level II / Development</span>
+          <h3>Team Integration</h3>
+          <p>Suggested focus: cooperative play, team coordination, and communication during structured airsoft scenarios.</p>
+          <p class="status">Course details and dates: to be announced.</p>
+        </article>
+        <article class="academy-level" id="level-3">
+          <span class="tag">Level III / Advanced</span>
+          <h3>Scenario Leadership</h3>
+          <p>Suggested focus: planning, team leadership, responsible decision-making, and after-action learning in simulated game scenarios.</p>
+          <p class="status">Course details and dates: to be announced.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="sessions" aria-labelledby="academy-sessions">
+      <span class="eyebrow">Class Calendar / Enrollment</span>
+      <h2 id="academy-sessions">Upcoming Training Sessions</h2>
+      <p class="academy-empty">No Training Academy session links have been published on this website yet. When a class is scheduled, its date, location, prerequisites, and direct Discord event link will appear here.</p>
+      <p class="muted">Academy sessions are separate from Chapter II: LOCKBOX event ticket registration. Do not assume a training course is included with an event ticket.</p>
+      <div class="academy-actions">
+        <a class="button secondary" href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Join Hostile Ground Discord ↗</a>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="academy-enrollment">
+      <h2 id="academy-enrollment">How Class Enrollment Will Work</h2>
+      <ol class="academy-steps">
+        <li><strong>Browse the class:</strong> Review the approved course description, date, capacity, and any prerequisites once published here.</li>
+        <li><strong>Open the Discord event:</strong> Follow that specific class's event link to view the scheduled session.</li>
+        <li><strong>Express interest:</strong> Use Discord's <strong>Interested</strong> option to notify organizers and receive event reminders.</li>
+        <li><strong>Confirm your place:</strong> Follow the organizers' instructions for a confirmed seat, check-in, and attendance.</li>
+      </ol>
+      <p class="academy-note"><strong>Important:</strong> Selecting <strong>Interested</strong> on a Discord event is not itself a confirmed registration and does not prove attendance. Class capacity, waitlists, and completion records will need organizer confirmation or a dedicated registration system.</p>
+      <p class="muted">Direct links to individual class events will be added after those events are created. No additional website login or collection of participant details is required at this stage.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="academy-next">
+      <h2 id="academy-next">Stay Informed</h2>
+      <p>Join the official Discord to follow announcements as class curricula and training opportunities are finalized. For general event safety rules and equipment guidance, see the <a href="rules-requirements.html">Hostile Ground Rules &amp; Requirements</a>.</p>
+      <div class="academy-actions"><a class="button" href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Join Discord ↗</a><a class="button secondary" href="index.html#resources">Player Intel</a></div>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>HOSTILE GROUND</strong>
+      <p>Tactical Airsoft Event Series</p>
+      <p>Every operation has a consequence.</p>
+    </div>
+    <nav class="footer-column" aria-label="Footer quick links">
+      <h2>Quick Links</h2>
+      <a href="index.html">Home</a>
+      <a href="event-information.html">Event Information</a>
+      <a href="rules-requirements.html">Rules &amp; Requirements</a>
+      <a href="registration.html">Registration</a>
+      <a href="training-academy.html">Training Academy</a>
+    </nav>
+    <div class="footer-column">
+      <h2>Player Resources</h2>
+      <a href="https://ticketbud.com/events/582d1804-be98-11f1-93d9-42010a71701f" target="_blank" rel="noopener noreferrer">LOCKBOX Tickets ↗</a>
+      <a href="https://app.waiverforever.com/pending/2jFsZvVeJe1486185911" target="_blank" rel="noopener noreferrer">T1 Field Waiver ↗</a>
+      <a href="hostile-ground-ruleset.pdf">Official Ruleset PDF</a>
+    </div>
+    <div class="footer-column">
+      <h2>Community</h2>
+      <a href="index.html#community">Community Information</a>
+      <a href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Join Discord ↗</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Hostile Ground. All rights reserved.</div>
+</footer>
+</body>
+</html>
