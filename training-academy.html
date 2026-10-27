@@ -84,6 +84,18 @@ img{max-width:100%}
 main a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
 @media(max-width:800px){.academy-levels{grid-template-columns:1fr}}
 @media(max-width:480px){.academy-level{padding:19px}.academy-actions .button{width:100%;text-align:center}}
+
+/* Published training sessions (rendered from academy-sessions.json) */
+.academy-session-list{display:grid;gap:16px;margin:18px 0 22px}
+.academy-session-card{background:#1b2023;border:1px solid #4a5357;border-left:4px solid #c1a06a;border-radius:7px;padding:21px}
+.academy-session-card h3{font-size:1.35rem;line-height:1.3;margin:5px 0 12px}
+.academy-session-card p{margin:9px 0}
+.academy-session-card .tag{font-weight:700;letter-spacing:1.4px;font-size:.76rem;color:#ff999b;text-transform:uppercase}
+.academy-session-card dl{display:grid;grid-template-columns:minmax(110px,155px) 1fr;gap:8px 13px;margin:14px 0}
+.academy-session-card dt{font-weight:700;color:#f5f5f5}
+.academy-session-card dd{margin:0;color:#c2c9cc;overflow-wrap:anywhere}
+.academy-session-card .button{margin:9px 0 0}
+@media(max-width:480px){.academy-session-card{padding:17px}.academy-session-card dl{grid-template-columns:1fr;gap:3px}.academy-session-card dd{margin-bottom:7px}.academy-session-card .button{display:block;text-align:center}}
 </style>
 </head>
 <body>
@@ -158,7 +170,8 @@ main a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
     <section class="panel" id="sessions" aria-labelledby="academy-sessions">
       <span class="eyebrow">Class Calendar / Enrollment</span>
       <h2 id="academy-sessions">Upcoming Training Sessions</h2>
-      <p class="academy-empty">No Training Academy session links have been published on this website yet. When a class is scheduled, its date, location, prerequisites, and direct Discord event link will appear here.</p>
+      <p class="academy-empty" id="academy-empty">No Training Academy sessions have been published yet. Dates, locations, prerequisites, and direct Discord event links will be listed here as courses are scheduled.</p>
+      <div class="academy-session-list" id="academy-session-list" aria-live="polite" aria-label="Published Academy sessions"></div>
       <p class="muted">Academy sessions are separate from Chapter II: LOCKBOX event ticket registration. Do not assume a training course is included with an event ticket.</p>
       <div class="academy-actions">
         <a class="button secondary" href="https://discord.gg/MvkZPe28j6" target="_blank" rel="noopener noreferrer">Join Hostile Ground Discord ↗</a>
@@ -213,5 +226,6 @@ main a:focus-visible{outline:2px solid #ff999b;outline-offset:4px}
   </div>
   <div class="footer-bottom">&copy; 2026 Hostile Ground. All rights reserved.</div>
 </footer>
+<script src="academy-sessions.js" defer></script>
 </body>
 </html>
