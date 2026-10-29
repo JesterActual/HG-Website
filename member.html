@@ -19,6 +19,8 @@ button.secondary{background:#465258}button:disabled{opacity:.5;cursor:not-allowe
 <form id="login-form"><label>Email<input type="email" name="email" autocomplete="username" required maxlength="254"></label>
 <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
 <button type="submit">Sign in</button></form></section>
+<section id="recovery"><h2>Recover account</h2><p>Recovery requires your registered email and existing authenticator. Losing the authenticator requires a separately verified support process.</p>
+<form id="request-recovery"><label>Email<input type="email" name="email" autocomplete="email" required></label><button type="submit" class="secondary">Email recovery link</button></form></section>
 <section id="signup" hidden><h2>Development test registration</h2>
 <form id="signup-form"><label>Email<input type="email" name="email" autocomplete="email" required></label>
 <label>Password (12 or more characters)<input type="password" name="password" autocomplete="new-password" minlength="12" required></label>
@@ -34,7 +36,7 @@ button.secondary{background:#465258}button:disabled{opacity:.5;cursor:not-allowe
 <button>Verify sign-in</button></form></section>
 <section id="ready" hidden><h2>Member access verified</h2><p id="member-email"></p>
 <p>Authentication and MFA are active for this session. Training Academy enrollment is not implemented yet.</p>
-<p id="profile-result"></p><button type="button" id="load-profile" class="secondary">View my profile</button></section>
+<form id="change-password"><label>Change password (12 or more characters)<input type="password" name="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><button type="submit">Change password</button></form><p id="profile-result"></p><button type="button" id="load-profile" class="secondary">View my profile</button></section>
 <button type="button" id="logout" hidden class="secondary">Sign out</button>
 <p class="muted">For security, never share passwords, verification codes or authenticator secrets.</p>
 <a href="/training-academy.html">Back to Training Academy</a>
