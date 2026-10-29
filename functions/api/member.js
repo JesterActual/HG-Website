@@ -107,9 +107,18 @@ function requireMember(auth) {
   return !!(auth && auth.user.email_confirmed_at && auth.aal === "aal2");
 }
 function failure(message, code, headers) { return response({ error: message }, code, headers); }
-function validUuid(s) { return typeof s === "string" && /^[0-9a-f]{8}-[0-9a-f-]{27,36}$/i.test(s); }
+function validUuid(s) { return typeof s === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s); }
 function validCode(s) { return typeof s === "string" && /^[0-9]{6}$/.test(s); }
 function validEmail(s) { return typeof s === "string" && s.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+async function readJson(req) {
+  const len = Number(req.headers.get("Content-Length") || 0);
+  if (len > 8192) throw new Error("Request too large");
+  const raw = await req.text();
+  if (raw.length > 8192) throw new Error("Request too large");
+  const body = JSON.parse(raw);
+  if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid request");
+  return body;
+}
 
 export async function onRequest(ctx) {
   if (!configured(ctx)) return failure("Member Portal is not configured for this development origin.", 503);
@@ -128,16 +137,42 @@ export async function onRequest(ctx) {
     }
     if (method === "POST" && action === "signup") {
       if (ctx.env.HG_SIGNUPS_ENABLED !== "true") return failure("Registration is not open.", 403);
-      const b = await req.json();
+      const b = await readJson(req);
       if (!validEmail(b.email) || typeof b.password !== "string" || b.password.length < 12 || b.password.length > 128)
         return failure("Enter a valid email and a password of 12–128 characters.", 400);
-      const result = await remote(ctx.env, "/auth/v1/signup?redirect_to=" +
-        encodeURIComponent(DEV_ORIGIN + "/auth/confirm"), "POST", { email: b.email.trim(), password: b.password });
+      // Confirmation links come from the custom DEV token-hash email template.
+      const result = await remote(ctx.env, "/auth/v1/signup", "POST",
+        { email: b.email.trim(), password: b.password });
       if (!result.ok) return failure("Registration could not be completed.", result.status === 429 ? 429 : 400);
       return response({ message: "Check your email for verification instructions. If you already have an account, sign in." });
     }
+    if (method === "POST" && action === "request_recovery") {
+      const b = await readJson(req);
+      if (!validEmail(b.email)) return failure("Enter a valid email address.", 400);
+      // The response reveals neither account existence nor email-delivery status.
+      const r = await remote(ctx.env, "/auth/v1/recover", "POST", { email: b.email.trim() });
+      if (r.status === 429) return failure("Too many requests. Try again later.", 429);
+      return response({ message: "If this email address has an account, recovery instructions will arrive shortly." }, 200, headers);
+    }
+    if (method === "POST" && action === "confirm") {
+      const b = await readJson(req);
+      if (typeof b.tokenHash !== "string" || !/^[a-f0-9]{64}$/i.test(b.tokenHash) ||
+          (b.type !== "email" && b.type !== "recovery"))
+        return failure("Invalid or expired confirmation link.", 400);
+      // One-use hash exchange is POSTed; a GET or link preview cannot consume it.
+      const r = await remote(ctx.env, "/auth/v1/verify", "POST",
+        { token_hash: b.tokenHash, type: b.type });
+      if (!r.ok) return failure("This link is invalid, expired, or has already been used.", 400);
+      if (!r.data.access_token || !r.data.refresh_token) {
+        if (b.type === "email")
+          return response({ state: "confirmed", loginRequired: true }, 200, headers);
+        return failure("Recovery could not establish a session. Request another link.", 400);
+      }
+      addSessionCookies(headers, r.data);
+      return response({ state: "confirmed", loginRequired: false, recovery: b.type === "recovery" }, 200, headers);
+    }
     if (method === "POST" && action === "login") {
-      const b = await req.json();
+      const b = await readJson(req);
       if (!validEmail(b.email) || typeof b.password !== "string") return failure("Invalid credentials.", 401);
       const result = await remote(ctx.env, "/auth/v1/token?grant_type=password", "POST",
         { email: b.email.trim(), password: b.password });
@@ -174,7 +209,7 @@ export async function onRequest(ctx) {
         secret: result.data.totp?.secret || null }, 200, headers);
     }
     if (method === "POST" && (action === "challenge" || action === "verify")) {
-      const b = await req.json();
+      const b = await readJson(req);
       if (!validUuid(b.factorId)) return failure("Invalid authenticator.", 400, headers);
       if (action === "challenge") {
         const result = await remote(ctx.env, "/auth/v1/factors/" + b.factorId + "/challenge", "POST", {}, auth.token);
@@ -190,6 +225,16 @@ export async function onRequest(ctx) {
       return response({ state: "mfa_verified" }, 200, headers);
     }
     if (!requireMember(auth)) return failure("Complete two-factor authentication.", 403, headers);
+    if (method === "POST" && action === "change_password") {
+      // The member gate immediately above requires a verified email and AAL2.
+      // An email recovery link on its own provides no MFA bypass.
+      const b = await readJson(req);
+      if (typeof b.password !== "string" || b.password.length < 12 || b.password.length > 128)
+        return failure("Choose a password of 12–128 characters.", 400, headers);
+      const result = await remote(ctx.env, "/auth/v1/user", "PUT", { password: b.password }, auth.token);
+      if (!result.ok) return failure("Password update unsuccessful. Additional verification may be required.", 400, headers);
+      return response({ message: "Password changed. Sign out and sign in again on other devices." }, 200, headers);
+    }
     if (method === "GET" && action === "profile") {
       const r = await remote(ctx.env, "/rest/v1/member_profiles?select=user_id,display_name&user_id=eq." +
         encodeURIComponent(auth.user.id), "GET", undefined, auth.token);
@@ -197,7 +242,7 @@ export async function onRequest(ctx) {
       return response({ profile: Array.isArray(r.data) && r.data.length ? r.data[0] : null }, 200, headers);
     }
     if (method === "POST" && action === "profile") {
-      const b = await req.json();
+      const b = await readJson(req);
       const name = typeof b.displayName === "string" ? b.displayName.trim() : "";
       if (name.length > 80) return failure("Display name must be 80 characters or fewer.", 400, headers);
       const r = await remote(ctx.env, "/rest/v1/member_profiles?on_conflict=user_id", "POST",
