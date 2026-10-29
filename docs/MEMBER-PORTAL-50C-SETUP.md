@@ -16,7 +16,7 @@ These bindings **must** be configured in Cloudflare Pages preview settings befor
 The backend refuses requests unless the host and configured project both match DEV. Production bindings are deliberately absent. Do not expose credentials via screenshots.
 
 ## Before account testing
-1. Configure the exact auth callback `https://dev.hostilegroundevents.com/auth/confirm` in the Supabase DEV redirect allowlist. Implement and review the PKCE email confirmation and password recovery endpoints before enabling any signups. The signup route currently points to a **not-yet-created callback**; it is held behind both Supabase signup disable and `HG_SIGNUPS_ENABLED=false`.
+1. Configure the exact auth callback `https://dev.hostilegroundevents.com/auth/confirm` in the Supabase DEV redirect allowlist. Review the implemented token-hash confirmation page and recovery endpoints, and configure the two dashboard email templates exactly as documented in `docs/MEMBER-PORTAL-EMAIL-TEMPLATES.md`. Both flows are **untested** and public registration remains disabled by Supabase and `HG_SIGNUPS_ENABLED=false`.
 2. Verify that Cloudflare actually builds and runs Pages Functions from this repository's root-directory Pages configuration (and does not silently serve a static-only deployment).
 3. Review threat model and security controls: IP/user rate limiting, abuse prevention, anti-enumeration, account-recovery, current-session checks, token revocation, MFA factor rotation, cookie refresh lifetime and CSRF protections.
 4. Verify that no preview other than the protected DEV hostname can access the backend. Require the exact origin and fail closed on all missing bindings.
