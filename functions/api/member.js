@@ -63,8 +63,12 @@ async function remote(env, path, method = "GET", body, token) {
   const result = await fetch(env.HG_SUPABASE_URL + path, {
     method, headers,
     body: body === undefined ? undefined : JSON.stringify(body),
-    redirect: "error"
+    // Cloudflare Workers does not support the Fetch "error" redirect mode.
+    // Keep redirects manual to avoid forwarding bearer tokens or API keys.
+    redirect: "manual"
   });
+  if (result.status >= 300 && result.status < 400)
+    throw new Error("Unexpected authentication provider redirect");
   let payload = {};
   try { payload = await result.json(); } catch {}
   return { ok: result.ok, status: result.status, data: payload };
