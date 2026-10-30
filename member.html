@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>Member Portal | Hostile Ground DEV</title>
+<style>
+:root{color-scheme:dark}body{background:#171b1e;color:#f5f5f5;margin:0;font:16px/1.55 Arial,sans-serif}
+main{max-width:710px;margin:5vh auto;padding:22px}section{background:#252b2e;border:1px solid #4a5357;border-left:4px solid #c73539;padding:22px;border-radius:7px;margin:14px 0}
+h1{font-size:2rem}h2{font-size:1.25rem}label{display:block;margin-top:12px}input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #728188;border-radius:4px;background:#15191b;color:#fff;font:inherit}
+button{padding:11px 16px;margin:15px 8px 0 0;background:#c73539;border:0;border-radius:4px;color:white;font:inherit;font-weight:700;cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid white;outline-offset:3px}
+button.secondary{background:#465258}button:disabled{opacity:.5;cursor:not-allowed}.muted{color:#c9d1d3}
+#message{min-height:1.5em} .private{overflow-wrap:anywhere} a{color:#ff9b9f}
+[hidden]{display:none!important}
+</style><script src="/member-portal.js" defer></script></head>
+<body><main>
+<p class="muted">HOSTILE GROUND / DEVELOPMENT ONLY</p><h1>Member Portal</h1>
+<p>Account access is under development. Public registrations are closed until security verification is complete.</p>
+<p id="message" aria-live="polite">Checking session…</p>
+<section id="login" hidden><h2>Sign in</h2>
+<form id="login-form"><label>Email<input type="email" name="email" autocomplete="username" required maxlength="254"></label>
+<label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+<button type="submit">Sign in</button></form></section>
+<section id="recovery" hidden><h2>Recover account</h2><p>Recovery requires your registered email and existing authenticator. Losing the authenticator requires a separately verified support process.</p>
+<form id="request-recovery"><label>Email<input type="email" name="email" autocomplete="email" required></label><button type="submit" class="secondary">Email recovery link</button></form></section>
+<section id="signup" hidden><h2>Development test registration</h2>
+<form id="signup-form"><label>Email<input type="email" name="email" autocomplete="email" required></label>
+<label>Password (12 or more characters)<input type="password" name="password" autocomplete="new-password" minlength="12" required></label>
+<button type="submit">Request account</button></form></section>
+<section id="enroll_mfa" hidden><h2>Set up authenticator app</h2>
+<p>Set up TOTP with your authenticator app. Your account cannot access member data until verification succeeds.</p>
+<button type="button" id="begin-enroll">Generate authenticator secret</button>
+<div id="enroll-info" hidden><p>Enter this secret in your authenticator app. Keep it private:</p><p><code id="totp-secret" class="private"></code></p>
+<form id="enroll-code"><label>Six-digit code<input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required></label>
+<button>Verify authenticator</button></form></div></section>
+<section id="verify_mfa" hidden><h2>Two-factor verification</h2>
+<form id="verify-code"><label>Six-digit authenticator code<input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required></label>
+<button>Verify sign-in</button></form></section>
+<section id="ready" hidden><h2>Member access verified</h2><p id="member-email"></p>
+<p>Authentication and MFA are active for this session. Training Academy enrollment is not implemented yet.</p>
+<form id="change-password"><label>Change password (12 or more characters)<input type="password" name="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><button type="submit">Change password</button></form><p id="profile-result"></p><button type="button" id="load-profile" class="secondary">View my profile</button></section>
+<button type="button" id="logout" hidden class="secondary">Sign out</button>
+<p class="muted">For security, never share passwords, verification codes or authenticator secrets.</p>
+<a href="/training-academy.html">Back to Training Academy</a>
+</main></body></html>
