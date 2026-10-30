@@ -209,9 +209,24 @@ export async function onRequest(ctx) {
       if (auth.aal !== "aal1" && auth.aal !== "aal2") return failure("Sign in first.", 401, headers);
       if (factorList(auth.user).length && auth.aal !== "aal2")
         return failure("Verify your existing authenticator first.", 403, headers);
+      // A previous, unfinished enrollment can reserve this friendly name.
+      // Restart only unverified factors owned by the signed-in user. Never
+      // remove verified MFA factors here (they require an AAL2 session).
+      const pending = Array.isArray(auth.user.factors)
+        ? auth.user.factors.filter(f => f.factor_type === "totp" &&
+          f.status === "unverified" && f.friendly_name === "Hostile Ground")
+        : [];
+      for (const f of pending) {
+        if (!validUuid(f.id)) return failure("Unable to restart authenticator setup.", 409, headers);
+        const cleared = await remote(ctx.env, "/auth/v1/factors/" + f.id,
+          "DELETE", undefined, auth.token);
+        if (!cleared.ok) return failure("Unable to clear unfinished authenticator setup.", 409, headers);
+      }
       const result = await remote(ctx.env, "/auth/v1/factors", "POST",
         { factor_type: "totp", friendly_name: "Hostile Ground" }, auth.token);
-      if (!result.ok) return failure("Unable to begin authenticator setup.", 400, headers);
+      if (!result.ok) return failure(
+        result.status === 422 ? "An unfinished authenticator exists. Please contact support." : "Unable to begin authenticator setup.",
+        result.status === 422 ? 409 : 400, headers);
       return response({ factorId: result.data.id,
         qrCode: result.data.totp?.qr_code || null,
         secret: result.data.totp?.secret || null }, 200, headers);
