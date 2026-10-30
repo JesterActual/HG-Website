@@ -24,14 +24,14 @@ async function refresh(){
   }catch(e){show(null);message(e.message);}
 }
 async function act(fn){message("Processing request…");try{const note=await fn();await refresh();if(note)message(note);}catch(e){message(e.message);}}
-$("login-form").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.currentTarget);act(async()=>{await request("login",{email:f.get("email"),password:f.get("password")});e.currentTarget.reset();});});
-$("signup-form").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.currentTarget);act(async()=>{await request("signup",{email:f.get("email"),password:f.get("password")});e.currentTarget.reset();return "If this address is eligible, check your email for confirmation.";});});
+$("login-form").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,f=new FormData(form);act(async()=>{await request("login",{email:f.get("email"),password:f.get("password")});form.reset();});});
+$("signup-form").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,f=new FormData(form);act(async()=>{await request("signup",{email:f.get("email"),password:f.get("password")});form.reset();return "If this address is eligible, check your email for confirmation.";});});
 $("begin-enroll").addEventListener("click",()=>act(async()=>{const r=await request("enroll",{});factor=r.factorId;enrollment={factorId:r.factorId};$("totp-secret").textContent=r.secret||"Secret unavailable";$("enroll-info").hidden=false;}));
 async function verify(code){if(!factor)throw Error("Missing authenticator; reload and try again.");const c=await request("challenge",{factorId:factor});await request("verify",{factorId:factor,challengeId:c.challengeId,code});$("totp-secret").textContent="";$("enroll-info").hidden=true;enrollment=null;}
-for(const form of ["verify-code","enroll-code"])$(form).addEventListener("submit",e=>{e.preventDefault();const code=new FormData(e.currentTarget).get("code");act(async()=>{await verify(code);e.currentTarget.reset();});});
+for(const id of ["verify-code","enroll-code"])$(id).addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,code=new FormData(form).get("code");act(async()=>{await verify(code);form.reset();});});
 $("logout").addEventListener("click",()=>act(async()=>{await request("logout",{});$("totp-secret").textContent="";$("enroll-info").hidden=true;enrollment=null;}));
 $("load-profile").addEventListener("click",()=>act(async()=>{const r=await request("profile");$("profile-result").textContent=r.profile?"Display name: "+(r.profile.display_name||"(not set)"):"No member profile created yet."; }));
 refresh();
 
-$("request-recovery").addEventListener("submit",e=>{e.preventDefault();const email=new FormData(e.currentTarget).get("email");act(async()=>{const r=await request("request_recovery",{email});e.currentTarget.reset();return r.message;});});
-$("change-password").addEventListener("submit",e=>{e.preventDefault();const password=new FormData(e.currentTarget).get("password");act(async()=>{const r=await request("change_password",{password});e.currentTarget.reset();return r.message;});});
+$("request-recovery").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,email=new FormData(form).get("email");act(async()=>{const r=await request("request_recovery",{email});form.reset();return r.message;});});
+$("change-password").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,password=new FormData(form).get("password");act(async()=>{const r=await request("change_password",{password});form.reset();return r.message;});});
