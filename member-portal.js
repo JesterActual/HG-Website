@@ -37,11 +37,16 @@ function displayQr(qr){
   const img=$("totp-qr");
   if(typeof qr!=="string")return false;
   const value=qr.trim();
-  // Supabase may return raw SVG or an SVG data URI (including ;utf-8).
-  // Never send the enrollment secret to a third-party QR service.
+  // Supabase Auth's raw TOTP QR response may include XML declarations,
+  // comments or a doctype before the actual SVG element.
+  // Display this trusted enrollment SVG locally; never use an external QR service.
   let src="";
-  if(/^data:image\/svg\+xml(?:;(?:charset=)?utf-?8)?(?:;base64)?,/i.test(value))src=value;
-  else if(/^(?:<\?xml[^>]*>\s*)?<svg[\s>]/i.test(value))src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(value);
+  if(/^data:image\/svg\+xml(?:;[^,]*)?,/i.test(value)){
+    src=value;
+  }else{
+    const svg=value.match(/<svg(?:\s|>)[\s\S]*?<\/svg\s*>/i);
+    if(svg)src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg[0]);
+  }
   if(!src)return false;
   img.src=src;img.hidden=false;return true;
 }
