@@ -147,6 +147,9 @@ export async function onRequest(ctx) {
       return response({ message: "Check your email for verification instructions. If you already have an account, sign in." });
     }
     if (method === "POST" && action === "request_recovery") {
+      // Keep email-sending recovery disabled until anti-abuse controls are tested.
+      if (ctx.env.HG_ACCOUNT_RECOVERY_ENABLED !== "true")
+        return failure("Account recovery is not available during development.", 403, headers);
       const b = await readJson(req);
       if (!validEmail(b.email)) return failure("Enter a valid email address.", 400);
       // The response reveals neither account existence nor email-delivery status.
@@ -186,14 +189,15 @@ export async function onRequest(ctx) {
     const auth = await authenticated(ctx, headers);
     if (method === "GET" && action === "status") {
       const open = ctx.env.HG_SIGNUPS_ENABLED === "true";
-      if (!auth) return response({ state: "signed_out", signupOpen: open }, 200, headers);
-      if (!auth.user.email_confirmed_at) return response({ state: "verify_email", signupOpen: open }, 200, headers);
+      const recoveryOpen = ctx.env.HG_ACCOUNT_RECOVERY_ENABLED === "true";
+      if (!auth) return response({ state: "signed_out", signupOpen: open, recoveryOpen }, 200, headers);
+      if (!auth.user.email_confirmed_at) return response({ state: "verify_email", signupOpen: open, recoveryOpen }, 200, headers);
       if (auth.aal !== "aal2") {
         const factors = factorList(auth.user);
         return response({ state: factors.length ? "verify_mfa" : "enroll_mfa",
-          factorId: factors[0]?.id || null, signupOpen: open }, 200, headers);
+          factorId: factors[0]?.id || null, signupOpen: open, recoveryOpen }, 200, headers);
       }
-      return response({ state: "ready", signupOpen: open,
+      return response({ state: "ready", signupOpen: open, recoveryOpen,
         user: { id: auth.user.id, email: auth.user.email } }, 200, headers);
     }
     if (!auth || !auth.user.email_confirmed_at) return failure("Sign-in and email verification required.", 401, headers);
