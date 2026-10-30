@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id);
 const sections=["login","signup","enroll_mfa","verify_mfa","ready"];
 let state={},factor=null, enrollment=null;
 function message(text){$("message").textContent=text;}
-function show(name){for(const s of sections)$(s).hidden=s!==name;$("signup").hidden=!(name==="login"&&state.signupOpen);$("logout").hidden=!(name==="enroll_mfa"||name==="verify_mfa"||name==="ready");}
+function show(name){for(const s of sections)$(s).hidden=s!==name;$("signup").hidden=!(name==="login"&&state.signupOpen);$("recovery").hidden=name!=="login";$("logout").hidden=!(name==="enroll_mfa"||name==="verify_mfa"||name==="ready");}
 async function request(action,payload){
   const options={method:payload===undefined?"GET":"POST",credentials:"same-origin",cache:"no-store",headers:{"Accept":"application/json","X-HG-Request":"1"}};
   if(payload!==undefined){options.headers["Content-Type"]="application/json";options.body=JSON.stringify(payload);}
