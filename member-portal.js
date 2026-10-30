@@ -37,10 +37,11 @@ function displayQr(qr){
   const img=$("totp-qr");
   if(typeof qr!=="string")return false;
   const value=qr.trim();
-  // Supabase returns an SVG image or SVG data URI; never fetch a third-party QR endpoint.
+  // Supabase may return raw SVG or an SVG data URI (including ;utf-8).
+  // Never send the enrollment secret to a third-party QR service.
   let src="";
-  if(/^data:image\/svg\+xml(?:;charset=[a-z0-9-]+)?;base64,[a-z0-9+/=]+$/i.test(value))src=value;
-  else if(/^<svg[\s>]/i.test(value))src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(value);
+  if(/^data:image\/svg\+xml(?:;(?:charset=)?utf-?8)?(?:;base64)?,/i.test(value))src=value;
+  else if(/^(?:<\?xml[^>]*>\s*)?<svg[\s>]/i.test(value))src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(value);
   if(!src)return false;
   img.src=src;img.hidden=false;return true;
 }
