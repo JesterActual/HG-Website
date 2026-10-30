@@ -26,10 +26,35 @@ async function refresh(){
 async function act(fn){message("Processing request…");try{const note=await fn();await refresh();if(note)message(note);}catch(e){message(e.message);}}
 $("login-form").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,f=new FormData(form);act(async()=>{await request("login",{email:f.get("email"),password:f.get("password")});form.reset();});});
 $("signup-form").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,f=new FormData(form);act(async()=>{await request("signup",{email:f.get("email"),password:f.get("password")});form.reset();return "If this address is eligible, check your email for confirmation.";});});
-$("begin-enroll").addEventListener("click",()=>act(async()=>{const r=await request("enroll",{});factor=r.factorId;enrollment={factorId:r.factorId};$("totp-secret").textContent=r.secret||"Secret unavailable";$("enroll-info").hidden=false;}));
-async function verify(code){if(!factor)throw Error("Missing authenticator; reload and try again.");const c=await request("challenge",{factorId:factor});await request("verify",{factorId:factor,challengeId:c.challengeId,code});$("totp-secret").textContent="";$("enroll-info").hidden=true;enrollment=null;}
+function clearEnrollmentDisplay(){
+  const img=$("totp-qr");img.hidden=true;img.removeAttribute("src");
+  $("qr-unavailable").hidden=true;
+  $("totp-secret").textContent="";
+  $("enroll-info").hidden=true;
+  const details=$("totp-secret").closest("details");if(details)details.open=false;
+}
+function displayQr(qr){
+  const img=$("totp-qr");
+  if(typeof qr!=="string")return false;
+  const value=qr.trim();
+  // Supabase returns an SVG image or SVG data URI; never fetch a third-party QR endpoint.
+  let src="";
+  if(/^data:image\/svg\+xml(?:;charset=[a-z0-9-]+)?;base64,[a-z0-9+/=]+$/i.test(value))src=value;
+  else if(/^<svg[\s>]/i.test(value))src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(value);
+  if(!src)return false;
+  img.src=src;img.hidden=false;return true;
+}
+$("begin-enroll").addEventListener("click",()=>act(async()=>{
+  const r=await request("enroll",{});
+  clearEnrollmentDisplay();
+  factor=r.factorId;enrollment={factorId:r.factorId};
+  $("totp-secret").textContent=r.secret||"Manual key unavailable.";
+  $("qr-unavailable").hidden=displayQr(r.qrCode);
+  $("enroll-info").hidden=false;
+}));
+async function verify(code){if(!factor)throw Error("Missing authenticator; reload and try again.");const c=await request("challenge",{factorId:factor});await request("verify",{factorId:factor,challengeId:c.challengeId,code});clearEnrollmentDisplay();enrollment=null;}
 for(const id of ["verify-code","enroll-code"])$(id).addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,code=new FormData(form).get("code");act(async()=>{await verify(code);form.reset();});});
-$("logout").addEventListener("click",()=>act(async()=>{await request("logout",{});$("totp-secret").textContent="";$("enroll-info").hidden=true;enrollment=null;}));
+$("logout").addEventListener("click",()=>act(async()=>{await request("logout",{});clearEnrollmentDisplay();enrollment=null;}));
 $("load-profile").addEventListener("click",()=>act(async()=>{const r=await request("profile");$("profile-result").textContent=r.profile?"Display name: "+(r.profile.display_name||"(not set)"):"No member profile created yet."; }));
 refresh();
 
