@@ -40,7 +40,12 @@ button.secondary{background:#465258}button:disabled{opacity:.5;cursor:not-allowe
 <button>Verify sign-in</button></form></section>
 <section id="ready" hidden><h2>Member access verified</h2><p id="member-email"></p>
 <p>Authentication and MFA are active for this session. Training Academy enrollment is not implemented yet.</p>
-<form id="change-password"><label>Change password (12 or more characters)<input type="password" name="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><button type="submit">Change password</button></form><p id="profile-result"></p><button type="button" id="load-profile" class="secondary">View my profile</button></section>
+<form id="change-password"><label>Change password (12 or more characters)<input type="password" name="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><button type="submit">Change password</button></form><p id="profile-result"></p><button type="button" id="load-profile" class="secondary">View my profile</button>
+<form id="profile-form" hidden>
+<label>Display name (up to 80 characters)
+<input id="display-name" name="displayName" maxlength="80" required autocomplete="nickname"></label>
+<button type="submit" id="save-profile">Create profile</button>
+</form></section>
 <button type="button" id="logout" hidden class="secondary">Sign out</button>
 <p class="muted">For security, never share passwords, verification codes or authenticator secrets.</p>
 <a href="/training-academy.html">Back to Training Academy</a>

@@ -275,6 +275,15 @@ export async function onRequest(ctx) {
       if (!r.ok) return failure("Unable to create profile. Existing profiles are read-only in this first release.", 409, headers);
       return response({ message: "Profile created." }, 200, headers);
     }
+    if (method === "POST" && action === "profile_update") {
+      const b = await readJson(req);
+      const name = typeof b.displayName === "string" ? b.displayName.trim() : "";
+      if (!name || name.length > 80) return failure("Enter a display name of 1–80 characters.", 400, headers);
+      const r = await remote(ctx.env, "/rest/v1/member_profiles?user_id=eq." +
+        encodeURIComponent(auth.user.id), "PATCH", { display_name: name }, auth.token);
+      if (!r.ok) return failure("Unable to update profile.", 403, headers);
+      return response({ message: "Profile updated." }, 200, headers);
+    }
     return failure("Unknown action.", 404, headers);
   } catch {
     // Never log passwords, OTP values, token hashes, cookies, or upstream responses.
