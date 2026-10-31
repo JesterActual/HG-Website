@@ -15,7 +15,7 @@ async function request(action,payload){
 }
 async function refresh(){
   try{const r=await request("status");state=r;factor=enrollment?.factorId||r.factorId||null;
-    if(r.state==="signed_out"){show("login");message("Sign in to continue.");}
+    if(r.state==="signed_out"){show("login");$("profile-form").hidden=true;profileExists=false;message("Sign in to continue.");}
     else if(r.state==="verify_email"){show(null);$("logout").hidden=false;message("Verify your email before continuing.");}
     else if(r.state==="enroll_mfa"){show("enroll_mfa");message("An authenticator is required.");}
     else if(r.state==="verify_mfa"){show("verify_mfa");message("Enter your authenticator code.");}
@@ -61,7 +61,25 @@ $("begin-enroll").addEventListener("click",()=>act(async()=>{
 async function verify(code){if(!factor)throw Error("Missing authenticator; reload and try again.");const c=await request("challenge",{factorId:factor});await request("verify",{factorId:factor,challengeId:c.challengeId,code});clearEnrollmentDisplay();enrollment=null;}
 for(const id of ["verify-code","enroll-code"])$(id).addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,code=new FormData(form).get("code");act(async()=>{await verify(code);form.reset();});});
 $("logout").addEventListener("click",()=>act(async()=>{await request("logout",{});clearEnrollmentDisplay();enrollment=null;}));
-$("load-profile").addEventListener("click",()=>act(async()=>{const r=await request("profile");$("profile-result").textContent=r.profile?"Display name: "+(r.profile.display_name||"(not set)"):"No member profile created yet."; }));
+let profileExists=false;
+$("load-profile").addEventListener("click",()=>act(async()=>{
+  const r=await request("profile");
+  profileExists=!!r.profile;
+  $("profile-result").textContent=profileExists?"Profile loaded. You can update your display name.":"No member profile created yet.";
+  $("display-name").value=profileExists?(r.profile.display_name||""):"";
+  $("save-profile").textContent=profileExists?"Update profile":"Create profile";
+  $("profile-form").hidden=false;
+}));
+$("profile-form").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget;act(async()=>{
+  const name=$("display-name").value.trim();
+  if(!name||name.length>80)throw Error("Enter a display name of 1–80 characters.");
+  const r=await request(profileExists?"profile_update":"profile",{displayName:name});
+  profileExists=true;
+  $("save-profile").textContent="Update profile";
+  $("profile-result").textContent="Display name: "+name;
+  return r.message;
+});});
+
 refresh();
 
 $("request-recovery").addEventListener("submit",e=>{e.preventDefault();const form=e.currentTarget,email=new FormData(form).get("email");act(async()=>{const r=await request("request_recovery",{email});form.reset();return r.message;});});
